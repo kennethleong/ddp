@@ -1,0 +1,45 @@
+---
+title: "Reproducible Pitch Presentation"
+author: "Kenneth Leong"
+date: "Sunday, 22 Feb, 2015"
+output:
+  ioslides_presentation:
+    transition: faster
+runtime: shiny
+---
+
+```{r echo=FALSE, message=FALSE}
+#Loading required packages
+if(!require(dplyr)) {install.packages("dplyr")}
+if(!require(ggvis)) {install.packages("ggvis")}
+if(!require(shiny)) {install.packages("shiny")}
+```
+
+## Here's what I need
+
+- 5 slides to pitch our idea done in Slidify or Rstudio Presenter
+- This presentation pushed to github or Rpubs
+- A link to github or Rpubs presentation pasted into the text box in submission page
+
+## The Presentation must satisfy the following
+
+1. It must be done in Slidify or Rstudio Presenter
+2. It must be 5 pages
+3. It must be hosted on github or Rpubs
+4. It must contained some embedded R code that gets run when slidifying the document
+
+## Some Embedded R Code
+
+```{r, echo = FALSE, message = FALSE, fig.width = 6, fig.height = 4}
+mtcars %>%
+  ggvis(x=~mpg)
+```
+
+## An Interactive Table
+
+```{r, echo=FALSE, fig.height=4, fig.width=8}
+mtcars %>%
+  group_by(rownames(mtcars)) %>%
+  summarise(mpg=mean(mpg), wt=mean(wt)) %>%
+  renderDataTable()
+```
